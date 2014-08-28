@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+    	<form-bean name="userFormBean"
+			type="mdf.UserFormBean"/>
+    	<form-bean name="ticketFormBean"
+			type="mdf.forms.TicketDetailsFormBean"/>
+	    <form-bean name="agentFormBean"
+    		type="mdf.forms.AgentDetailsFormBean"/>
+	    <form-bean name="contactFormBean"
+    		type="mdf.forms.ContactDetailsFormBean"/>
+	    <form-bean name="callFormBean"
+    		type="mdf.forms.CallDetailsFormBean"/>
+	    <form-bean name="requestFormBean"
+    		type="mdf.forms.RequestDetailsFormBean"/>
+	    <form-bean name="itineraryFormBean"
+    		type="mdf.forms.ItineraryDetailsFormBean"/>
+		<form-bean
+			name="userForm"
+			type="forms.UserActionForm"/>
+		<form-bean name="generateReportFormBean" type="mdf.forms.GenerateReportFormBean"/>
+
+
+  	</form-beans>
+  	<!-- ========== Global Forward Definitions ============================== -->
+  	<global-forwards>
+    	<forward name="edit_agent" path="/agent_details.jsp"/>
+    	<forward name="agent_summary" path="/agent_summary.jsp"/>
+    	<forward name="list_contacts" path="/contacts.jsp"/>
+    	<forward name="edit_contact" path="/contact_details.jsp"/>
+    	<forward name="edit_call" path="/call_details.jsp"/>
+    	<forward name="edit_request" path="/contact_details.jsp"/>
+    	<forward name="delete_contact" path="/contact_details.jsp" />
+    	<forward name="edit_itinerary" path="/itinerary_details.jsp"/>
+    	<forward name="list_tickets" path="/tickets.jsp"/>
+    	<forward name="list_contact_tickets" path="/contact_tickets.jsp"/>
+    	<forward name="edit_ticket" path="/ticketing_details.jsp"/>
+    	<forward name="print_eticket" path="/eticket_details.jsp"/>
+    	<forward name="print_invoice" path="/invoice_details.jsp"/>
+    	<forward name="login" path="/login.jsp"/>
+	</global-forwards>
+
+  	<action-mappings>
+    	<action path="/contacts_lookup"
+        	type="mdf.action.ContactUpdateAction"
+            name="contactFormBean"
+            scope="request">
+      		<forward name="bad-address"
+            	path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="bad-password"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="success"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+    	</action>
+    	<action path="/agents_action"
+        	type="mdf.action.AgentUpdateAction"
+            name="agentFormBean"
+            scope="request">
+      		<forward name="bad-address"
+            	path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="bad-password"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="success"
+        		path="/agent_details.jsp"/>
+      		<forward name="edit_agent"
+        		path="/agent_details.jsp"/>
+      		<forward name="agent_summary"
+        		path="/agent_summary.jsp"/>
+      		<forward name="agent_dashboard"
+        		path="/agent_dashboard.jsp"/>
+    	</action>
+    	<action path="/contacts_action"
+        	type="mdf.action.ContactUpdateAction"
+            name="contactFormBean"
+            scope="request">
+      		<forward name="bad-address"
+            	path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="bad-password"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="success"
+        		path="/contact_details.jsp"/>
+      		<forward name="edit_contact"
+        		path="/contact_details.jsp"/>
+    	</action>
+    	<action path="/ticket_action"
+        	type="mdf.action.TicketUpdateAction"
+            name="ticketFormBean"
+            scope="request">
+      		<forward name="print_eticket"
+        		path="/eticket_details.jsp"/>
+      		<forward name="print_invoice"
+        		path="/invoice_details.jsp"/>
+      		<forward name="edit_ticket"
+        		path="/ticketing_details.jsp"/>
+    	</action>
+    	<action path="/itinerary_action"
+        	type="mdf.action.ItineraryUpdateAction"
+            name="itineraryFormBean"
+            scope="request">
+      		<forward name="bad-address"
+            	path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="bad-password"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="success"
+        		path="/itinerary_details.jsp"/>
+      		<forward name="edit_itinerary"
+        		path="/itinerary_details.jsp"/>
+    	</action>
+    	<action path="/lookupContact"
+        	type="mdf.action.CallUpdateAction"
+        	parameter="actionn"
+            name="callFormBean"
+            scope="request">
+      		<forward name="bad-address"
+            	path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="bad-password"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="success"
+        		path="/call_details.jsp"/>
+      		<forward name="edit_call"
+        		path="/call_details.jsp"/>
+    	</action>
+    	<action path="/call_action"
+        	type="mdf.action.CallUpdateAction"
+            name="callFormBean"
+            scope="request">
+      		<forward name="bad-address"
+            	path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="bad-password"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="success"
+        		path="/call_details.jsp"/>
+      		<forward name="edit_call"
+        		path="/call_details.jsp"/>
+    	</action>
+    	<action path="/request_action"
+        	type="mdf.action.RequestUpdateAction"
+            name="requestFormBean"
+            scope="request">
+      		<forward name="bad-address"
+            	path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="bad-password"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="success"
+        		path="/request_details.jsp"/>
+      		<forward name="edit_call"
+        		path="/request_details.jsp"/>
+    	</action>
+
+
+    	<action path="/login_action"
+        	type="mdf.action.LoginAction"
+             name="agentFormBean"
+            scope="request">
+      		<forward name="bad-address"
+            	path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="bad-password"
+        		path="/WEB-INF/results/confirm-contactadd.jsp"/>
+      		<forward name="agent_dashboard"
+        		path="/agent_dashboard.jsp"/>
+    	</action>
+
+    	<action path="/generateStat"
+        	type="mdf.action.GenerateAgentStatAction"
+            name="generateReportFormBean"
+            parameter="actions"
+            scope="request">
+
+      		<forward name="success"
+        		path="/showStat.jsp"/>
+      		<forward name="error"
+        		path="/call_details.jsp"/>
+
+        		<forward name="cust_lists"
+        		path="/reports/custnotupdated.jsp"/>
+    	</action>
+
+
+  	</action-mappings>
+
+
+	<plug-in className="mdf.action.MdfPlugin">
+  	<!--<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/> -->
+  	<!-- Specify if Tiles should be Struts 1.1 module aware.-->
+    <!--<set-property property="moduleAware" value="true"/> -->
+   </plug-in>
+</struts-config>
+

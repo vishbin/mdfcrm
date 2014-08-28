@@ -1,0 +1,64 @@
+.warningtext
+{
+color: red;
+font-weight: bold;
+}
+.highlight
+{
+    font-size:12pt;
+    font-family:"Times New Roman";
+    color:white;background:black;
+}
+
+BODY
+{
+    BACKGROUND-COLOR: #9f9fff;
+    FONT-FAMILY: 'Times New Roman'
+}
+H1
+{
+    COLOR: #6666CC;
+    FONT-FAMILY: 'Times New Roman';
+    TEXT-TRANSFORM: capitalize
+}
+TABLE {
+	border: 1;
+	padding: 0;
+	margin: 0;
+	border-color:#000000;
+}
+td {
+	text-align: left;
+	vertical-align: top;
+	border-color:#000000;
+	color:#4D4D4D;
+	padding: 0;
+}
+.bigbutton
+{
+    COLOR: #6666CC;
+    FONT-FAMILY: 'Times New Roman';
+    TEXT-TRANSFORM: capitalize;
+    font-size: large;
+    width: 250px;
+
+}
+.invoice_header
+{
+    COLOR: Gray;
+    FONT-FAMILY: 'Georgia';
+    font-size: 8
+}
+.invoice_text
+{
+    COLOR: Black;
+    FONT-FAMILY: 'Times New Roman';
+    font-size: 10
+}
+.heading
+{
+    COLOR: #6666CC;
+    FONT-FAMILY: 'Times New Roman';
+    TEXT-TRANSFORM: capitalize
+}
+

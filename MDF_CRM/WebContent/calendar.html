@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<head>
+	<title>Calendar</title>
+	<style>
+		 a {font: bold 11px verdana; color: #ffffff;text-decoration: none}
+		 select,input { font: normal 11px arial;}
+		.hdr {font: normal 12px arial; background: gray; border-bottom: black 1px solid; border-left: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; color: #ffffff;}
+		.hdrA {background: gray; border-bottom: black 1px solid; border-left: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; color: #ffffff; cursor: hand;}
+		.tdstyle {color: #000000;text-align: center;font-weight:normal;font-size:10px;font-family: Verdana;background-color: #ffffff;}
+		 .tdstyle:hover {color: #000000;text-align: center;font-weight:normal;font-size:10px;font-family: Verdana;background-color: #999999;}
+		.hdstyle {text-align: center;font-weight:bold;font-size:11px;font-family: Verdana;color: black}
+		.hdstyle:hover {text-align: center;font-weight:bold;font-size:11px;font-family: Verdana;color: black;text-decoration:underline;}
+	</style>
+
+	<script type="text/javascript" language="JavaScript" src="include/alliance-auto-common.js"></script>
+
+
+</head>
+
+<body bgcolor="#ebecdc" marginleft="0" marginright="0" margintop="0" marginbottom="0">
+<form name="calendarform">
+<table width="160" height="160" cellpadding="1" cellspacing="0" border="0" bgcolor="#000000">
+<tr><td align="center">
+		<table width="158" height="158" cellpadding="1" cellspacing="0" border="0" bgcolor="#ffffff">
+			<tr>
+				 <td bgcolor="#999999" id="PrevDiv" width="16"><a href="javascript: reducemonths();"><img src="../../images/buttons/prev.gif" border="0"></a></td>
+			    <td bgcolor="#999999">
+				        <select NAME="month" onchange="daylayerdisplay(document.calendarform.year.value,this.options[selectedIndex].value,100);">
+						<option value="0">JAN</option>
+						<option value="1">FEB</option>
+						<option value="2">MAR</option>
+						<option value="3">APR</option>
+						<option value="4">MAY</option>
+						<option value="5">JUN</option>
+						<option value="6">JUL</option>
+						<option value="7">AUG</option>
+						<option value="8">SEP</option>
+						<option value="9">OCT</option>
+						<option value="10">NOV</option>
+						<option value="11">DEC</option>
+					    </select>
+<script type="text/javascript" language="JavaScript">
+var oDateNow = new Date();
+m=document.calendarform.month.selectedIndex=oDateNow.getMonth();
+</script>
+			    </td>
+			    <td bgcolor="#999999"><input NAME="year" maxlength="4" size="6" width="4" onchange="daylayerdisplay(this.value,document.calendarform.month.selectedIndex,100);">
+<!--Populating the current year value for the Year input field for the first time-->
+<script type="text/javascript" language="JavaScript">
+var oDateNow = new Date();
+if (N6){
+y=document.calendarform.year.value=oDateNow.getYear()+1900;
+}
+else
+{
+y=document.calendarform.year.value=oDateNow.getYear();
+}
+</script>
+
+				</td>
+				<td id=NextDiv width="16" bgcolor="#999999"><a href="javascript: increasemonths();"><img src="../../images/buttons/next1.gif" height="16" width="16" border="0"></a></td>
+			</tr>
+			<tr>
+				<td colspan="4" style="border-top: black 1px solid;" >
+					<table id="tblCalendar" width="100%" height="80" cellpadding="0" cellspacing="0" border="0">
+	                        <tr><td colspan="7" height="1" width="100%" bgcolor="white"></td></tr>
+							<tr height="15%" bgcolor="#ebecdc">
+							<td class="hdstyle">S</td>
+							<td class="hdstyle">M</td>
+							<td class="hdstyle">T</td>
+							<td class="hdstyle">W</td>
+							<td class="hdstyle">T</td>
+							<td class="hdstyle">F</td>
+							<td class="hdstyle">S</td>
+							</tr>
+							<tr height="15%" bgcolor="white">
+							<td id="day1" class="tdstyle" valign="middle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							<td id="day2" valign="top"  class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							<td id="day3" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							<td id="day4" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							<td id="day5" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							<td id="day6" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							<td id="day7" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							</tr>
+							<tr height="15%" bgcolor="gray">
+								<td id="day8" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day9" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day10" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day11" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day12" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day13" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day14" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							</tr>
+							<tr height="15%" bgcolor="gray">
+								<td id="day15" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day16" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day17" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day18" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day19" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day20" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day21" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							</tr>
+							<tr height="15%" bgcolor="gray">
+								<td id="day22" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day23" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day24" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day25" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day26" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day27" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day28" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							</tr>
+							<tr height="15%" bgcolor="gray">
+								<td id="day29" valign="middle" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day30" valign="middle" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day31" valign="middle" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day32" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day33" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day34" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day35" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+							</tr>
+							<tr height="15%" bgcolor="gray">
+								<td id="day36" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a></td>
+								<td id="day37" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a>&nbsp;</td>
+								<td id="day38" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a>&nbsp;</td>
+								<td id="day39" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a>&nbsp;</td>
+								<td id="day40" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a>&nbsp;</td>
+								<td id="day41" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a>&nbsp;</td>
+								<td id="day42" valign="top" class="tdstyle"><a href="#" class="tdstyle" onclick="sendvalue(document.calendarform.year.value,document.calendarform.month.selectedIndex,this.id);"></a>&nbsp;</td>
+							</tr>
+					</table>
+					<table width="100%"  cellpadding="0" cellspacing="0">
+							<tr>
+								<td>&nbsp;</td><td bgcolor="#ffffff" height="1" width="100%" colspan="5">
+								               <table  border="0" cellspacing="0" cellpadding="0" width="100%"  >
+
+											   <tr><td  align="center">
+<input type="button" id="todaybutton" value="Today" name="todaybutton" style="width:60px;BORDER-RIGHT: #000066 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #6699cc 1px solid; PADDING-LEFT: 0px; FONT-SIZE: 10px; BACKGROUND: #003399; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #6699cc 1px solid; WIDTH: 70px; CURSOR: hand; COLOR: #ffffff; LINE-HEIGHT: 10px; PADDING-TOP: 0px; BORDER-BOTTOM: #000066 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica; HEIGHT: 17px" onclick="sendvalue(1,1,0);">
+</td><td  align="center">
+
+<input type="button" id="cancelPop" value="Cancel" name="cancelPop" style="width:60px;BORDER-RIGHT: #336699 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #336699 1px solid; PADDING-LEFT: 0px; FONT-SIZE: 10px; BACKGROUND: #f1f5fa; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-LEFT: #336699 1px solid; CURSOR: hand; COLOR: #003399; LINE-HEIGHT: 10px; PADDING-TOP: 0px; BORDER-BOTTOM: #336699 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica; HEIGHT: 17px" onclick="closeFrame();"></td></tr>
+											   <tr><td align="center" height="2"></td><td height="2" align="center"></td></tr>
+											   </table>
+											   </td>
+							     <td>&nbsp;</td>
+							</tr>
+					</table>
+				</td>
+			</tr>
+		</table></td></tr></table>
+</form>
+<script type="text/javascript" language="javascript">
+daylayerdisplay(document.calendarform.year.value,document.calendarform.month.selectedIndex,100);
+</script>
+
+</html>

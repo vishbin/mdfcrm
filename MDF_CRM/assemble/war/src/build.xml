@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+
+<!-- ============================================================== -->
+<!-- Ant XML file for MDF CRM build                      -->
+<!-- as    deployed to    Tomcat Web Server.          -->
+<!--                                                                -->
+<!-- ============================================================== -->
+
+<project name="mdf_struts_web_1.0" default="move" basedir=".">
+
+	<!-- App name-dependent settings. -->
+	<property name="appname" value="mdf_struts_web_1.0"/>
+	<property name="war" value="${appname}.war"/>
+	<property name="lib.cpath" value="../WebContent/WEB-INF/lib" />
+
+	<!-- Package directory structures of interest. -->
+
+	<property name="domain" value="mdf_struts_web_1.0"/>
+
+	<property name="tomcat.home" value="C:/apache-tomcat-6.0.10"/>
+	<property name="tomcat.bin" value="${tomcat.home}/bin"/>
+
+	<!-- Deployment destination -->
+	<property name="deploy.path" value="${tomcat.home}/webapps/${appname}" />
+	<property name="webdist" value="${deploy.path}/WEB-INF/classes" />
+	<property name="jspdist" value="${deploy.path}" />
+
+	<!-- Source file location. -->
+	<property name="src" value="."/>
+	<property name="src.docroot" value="${src}/../WebContent"/>
+	<property name="src.conf" value="${src}/config"/>
+
+	<!-- Destination directory for the build -->
+	<property name="build" value="../build"/>
+	<property name="build.docdir" value="${build}/docs/api"/>
+	<property name="build.classesdir" value="${build}/classes"/>
+	
+	<path id="project.classpath">
+		<pathelement path="${tomcat.cpath}"/>
+		<fileset dir="${lib.cpath}">
+			<include name="**/*.jar"/>
+			<include name="**/*.zip"/>
+			<exclude name="**/.svn"/>
+		</fileset>
+	</path>
+
+	<!-- Destination directory for the assembly targets -->
+	<property name="assemble" value="../assemble"/>
+	<property name="assemble.war" value="${assemble}/war"/>
+
+	<!-- ======================================================= -->
+	<!-- Compile all classes.                                    -->
+	<!-- ======================================================= -->
+	<target name="compile">
+		<mkdir dir="${build.classesdir}"/>
+		<javac nowarn="on"
+			 includes="**/*.java"
+			 excludes="build.xml,**/ItineraryDetailsFormBean.java,**/ItineraryUpdateAction.java,**/ItineraryUpdateDAO.java"
+			 srcdir="${src}"
+			 destdir="${build.classesdir}" >
+			<classpath refid="project.classpath"/>
+		</javac>
+	</target>
+
+	<!-- ======================================================= -->
+	<!-- Clean up various files and directories.                 -->
+	<!-- ======================================================= -->
+	<target name="clean_war">
+		<delete dir="${assemble.war}"/>
+	</target>
+	<target name="clean_assemble">
+		<delete dir="${assemble}"/>
+	</target>
+	<target name="clean" depends="clean_assemble">
+		<delete dir="${build}"/>
+	</target>
+
+	<!-- ======================================================= -->
+	<!-- Assemble WAR module.                                    -->
+	<!-- ======================================================= -->
+	<target name="war" depends="clean_war">
+		<mkdir dir="${assemble.war}"/>
+
+		<copy todir="${assemble.war}">
+			<fileset dir="${src.docroot}">
+				<exclude name="**/.svn"/>
+				<include name="img/"/>
+				<include name="img/"/>
+				<include name="theme/"/>
+			</fileset>				
+		</copy>
+
+		<copy todir="${assemble.war}/src">
+			<fileset dir="${src}">
+				<exclude name="**/.svn"/>
+			</fileset>				
+		</copy>
+
+		<copy todir="${assemble.war}/WEB-INF/classes">
+			<fileset dir="${build.classesdir}" >
+				<exclude name="**/*.svn"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${assemble.war}/WEB-INF/lib">
+			<fileset dir="${lib.cpath}" >
+				<include name="*.jar"/>
+				<exclude name="servlet-api.jar"/>
+				<exclude name="**/.svn"/>
+			</fileset>
+		</copy>
+
+		<war destfile="${assemble.war}/${war}"
+			 basedir="${assemble.war}"
+			 webxml="${src.docroot}/WEB-INF/web.xml"
+			 manifest="${src.docroot}/META-INF/MANIFEST.MF"
+			 excludes="${war}" />
+	</target>
+
+	<!-- ======================================================= -->
+	<!-- Move the changed JSP files to deployment folders.       -->
+	<!-- ======================================================= -->
+	<target name="jsp">
+		<copy todir="${jspdist}" >
+			<fileset dir="${src.docroot}" >
+				<exclude name="**/*.svn"/>
+			</fileset>
+		</copy>
+	</target>
+
+
+	<!-- ======================================================= -->
+	<!-- Move the changed web files to deployment folders.       -->
+	<!-- ======================================================= -->
+	<target name="web" depends="compile">
+		<copy todir="${webdist}">
+			<fileset dir="${build.classesdir}" >
+			</fileset>
+		</copy>
+
+		<copy todir="${jspdist}/WEB-INF/lib">
+			<fileset dir="${lib.cpath}" >
+				<include name="*.jar"/>
+				<exclude name="servlet-api.jar"/>
+				<exclude name="**/.svn"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="move" depends="compile,jsp,web" />
+	<target name="all" depends="move,war" />
+
+</project>

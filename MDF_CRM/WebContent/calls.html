@@ -1,0 +1,89 @@
+<!--
+<%@ taglib uri="/WEB-INF/struts-bean.tld"  prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld"  prefix="html" %>
+<%@ taglib uri="/WEB-INF/struts-nested.tld" prefix="nested"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page import="java.util.*" %>
+<%@ page import="mdf.forms.*" %>
+-->
+<LINK HREF="css/mdfstyles.css" TYPE="text/css" REL="stylesheet" />
+<HTML>
+<HEAD>
+	<TITLE>Call Details</TITLE>
+    <SCRIPT language="JavaScript">
+    </SCRIPT>
+</HEAD>
+<BODY>
+	<TABLE border=1 width=100%>
+	    <!-- this is call info row -->
+		<TR>
+    		<TD>
+		    	<html:form action="/call_action.do" onsubmit="return validate_form ();">
+		            <html:submit value="NEW CALL" onclick="javascript:setAction('add', this.form)"></html:submit>
+		            <html:submit value="SAVE" onclick="javascript:setAction('save', this.form)"></html:submit>
+		            <html:submit value="DELETE" onclick="javascript:setAction('delete', this.form)"></html:submit>
+<!--
+	                <html:hidden property="ui_selectedContact" value="${ui_selectedContact}"/>
+	                <html:hidden property="deleted" value="${deleted}"/>
+	                <html:hidden property="insert_key" value="${insert_key}"/>
+	                <html:hidden property="user" value="${user}"/>
+-->	    
+            	    
+	                <html:hidden property="actionn" value="ADD"/>
+                    <TABLE>
+	    		    	<TR>
+		    		    <TD colspan =3><B>CALL INFO</TD>
+			        	</TR>
+		        		<TR>
+				        <TD colspan=3>
+				        Call ID <html:text property="call_id" size="4"></html:text>
+				        </TD></TR>
+
+				        <TR>
+				        <TD><html:select property="channel">
+						    <html:option value="PHONE">Phone</html:option>
+						    <html:option value="EMAIL">Email</html:option>
+					    </html:select></TD>
+					    <td>Phone:<html:text property="number" size="10" ></html:text></td>
+					    <td>Email:<html:text property="email" size="20"></html:text></td>
+					    </TR>
+				        <TR>
+				        <TD>CHANNEL</TD>
+					    <td><html:submit value="LOOKUP PHONE" onclick="javascript:setAction('lookupContactAndRequest', this.form)"></html:submit></td>
+					    <td><html:submit value="LOOKUP EMAIL" onclick="javascript:setAction('lookupContactAndRequest', this.form)"></html:submit></td>
+					    </TR>
+
+				        <TR>
+				        <TD><html:text property="user" size="10"></html:text></TD>
+					    <td><html:select property="call_type">
+						    <html:option value="INBOUND">Inbound</html:option>
+						    <html:option value="OUTBOUND">Outbound</html:option>
+					    </html:select></td>
+					    <td><html:text property="date_time" size="20"></html:text></td>
+					    </TR>
+		
+		    		    <!-- this is notes row, lets figure later -->
+						<TR>
+						<TD COLSPAN=3>
+						    <TABLE>
+						    <TR><TD>
+						    <B>CALL NOTES</B>
+						    <BR>
+						    </TD></TR>
+					        <TR>
+					        <TD>	
+						        <html:textarea property="notes" rows="4"></html:textarea>
+					        </TD>
+					        </TR>
+						    </TABLE>
+				        </TD>
+				        </TR>
+
+					</TABLE>
+				</html:form>
+	        </TD>
+        </TR>
+
+	</TABLE>
+</BODY></HTML>

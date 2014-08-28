@@ -1,0 +1,12 @@
+insert into agent(agent_name, password, active, add_dttm, update_dttm, created_by, updated_by)
+values
+('NONE', 'mantissa', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('HEMANT', 'hemant', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('KRISH', 'krish', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('ROHIT', 'rohit', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('ANAND', 'anand', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('SACHIN', 'sachin', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('KAUSHIK', 'kaushik', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('NAVEEN', 'naveen', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('VISHAL', 'vishal', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV'),
+('SANDIP', 'sandip', 1, '2007-10-10', '2007-10-10', 'KKV', 'KKV')
